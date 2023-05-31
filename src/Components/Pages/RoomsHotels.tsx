@@ -25,7 +25,8 @@ const image =
   "https://firebasestorage.googleapis.com/v0/b/project1-ed601.appspot.com/o/images%2Froom3.jpeg_90700101-e47b-448d-a1c2-347412565048?alt=media&token=e0751352-e557-4881-9ebf-fcba444b4a81";
 const image2 =
   "https://firebasestorage.googleapis.com/v0/b/project1-ed601.appspot.com/o/images%2Froom4.jpg_4778601d-3aec-49f4-9d4e-ecc0047f8b2e?alt=media&token=c21b73a3-fcba-4b56-8146-66d45431c68d";
-const Rooms: React.FC = () => {
+
+const RoomsHotels: React.FC<String> = ({ hotelId }) => {
   const [rooms, setRooms] = useState<Room[]>([]);
 
   useEffect(() => {
@@ -35,10 +36,7 @@ const Rooms: React.FC = () => {
   const fetchRooms = async () => {
     try {
       const roomsCollectionRef = collection(db, "rooms");
-      const roomsQuery = query(
-        roomsCollectionRef
-        // where("hotel_id", "==", hotelId)
-      );
+      const roomsQuery = query(roomsCollectionRef);
       const snapshot = await getDocs(roomsQuery);
 
       const fetchedRooms: Room[] = [];
@@ -63,7 +61,7 @@ const Rooms: React.FC = () => {
   };
   return (
     <div>
-      <h2>Rooms List</h2>
+      <h2>{hotelId} Rooms</h2>
       <List
         itemLayout="vertical"
         size="large"
@@ -121,4 +119,4 @@ const Rooms: React.FC = () => {
   );
 };
 
-export default Rooms;
+export default RoomsHotels;

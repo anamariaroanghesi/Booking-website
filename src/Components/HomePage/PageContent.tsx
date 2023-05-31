@@ -12,6 +12,7 @@ import WelcomePage from "../Pages/Welcome";
 import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import Rooms from "../Pages/Rooms";
 import { RoomPreferences } from "@mui/icons-material";
+import RoomsHotels from "../Pages/RoomsHotels";
 
 function PageContent() {
   const [userId, setUserId] = useState<string>("");
@@ -47,6 +48,7 @@ function PageContent() {
         <Route path="/add_hotel" element={<AddHotel />} />
         <Route path="/add_room" element={<AddRoom />} />
         <Route path="/hotels" element={<Hotels />} />
+        <Route path="/rooms" element={<Rooms />} />
         <Route path="/rooms/:hotelId" element={<RoomsWrapper />} />
         <Route path="/pending_reservations" element={<PendingReservations />} />
         <Route
@@ -75,6 +77,6 @@ const RoomsWrapper: React.FC = () => {
   if (!hotelId) {
     return <div>Invalid hotel ID</div>;
   }
-  return <Rooms hotelId={hotelId} />;
+  return <RoomsHotels hotelId={hotelId} />;
 };
 export default PageContent;
